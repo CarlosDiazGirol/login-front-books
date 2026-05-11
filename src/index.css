@@ -1,0 +1,68 @@
+@import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=Space+Grotesk:wght@400;500;700&display=swap');
+
+:root {
+  --paper: #fff8ef;
+  --paper-deep: #f4ead7;
+  --ink: #1f1c18;
+  --muted: #665f57;
+  --line: #d7c8b3;
+  --accent-soft: rgba(184, 74, 37, 0.12);
+  --accent-strong: #b84a25;
+  --forest: #244033;
+  font-family: 'Space Grotesk', 'Avenir Next', sans-serif;
+  line-height: 1.5;
+  font-weight: 400;
+  color: var(--ink);
+  background:
+    radial-gradient(circle at top left, rgba(232, 155, 107, 0.26), transparent 28%),
+    radial-gradient(circle at top right, rgba(53, 91, 68, 0.18), transparent 32%),
+    linear-gradient(180deg, #f7f1e6 0%, #fdf8f2 52%, #f5efe5 100%);
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  min-width: 320px;
+  min-height: 100vh;
+}
+
+body,
+button,
+input {
+  font-family: 'Space Grotesk', 'Avenir Next', sans-serif;
+}
+
+#root {
+  min-height: 100vh;
+}
+
+a {
+  color: inherit;
+}
+
+h1,
+h2,
+h3,
+p {
+  margin-top: 0;
+}
+
+button,
+input {
+  font: inherit;
+}
+
+code {
+  font-family: 'IBM Plex Mono', monospace;
+}
