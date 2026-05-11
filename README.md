@@ -173,8 +173,6 @@ Para que el frontend funcione correctamente, el backend debe:
 
 ## Estado actual
 
-El frontend ya cubre:
-
 - registro
 - login
 - persistencia de sesión
@@ -182,10 +180,3 @@ El frontend ya cubre:
 - listado de libros
 - creación de libros
 - borrado de libros
-
-No aparece en el código actual:
-
-- edición de libros
-- recuperación de contraseña
-- tests automatizados
-- gestión avanzada de roles
