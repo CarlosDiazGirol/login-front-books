@@ -15,7 +15,10 @@ function App() {
       <Route path="/register" element={(<GuestRoute><RegisterPage /></GuestRoute>)}/>
       <Route path="/books" element={(<ProtectedRoute><BooksPage /></ProtectedRoute>)}/>
       {/* Si la ruta no existe, redirige a la ruta inicial sin añadir otra entrada al historial. */}
-      <Route path="*" element={<Navigate to="/" replace />} /> 
+      <Route path="*" element={<Navigate to="/" replace />} />
+      {/* Si quieres una página de error 404 para controlar que el recurso no existe */}
+      {/* <Route path="*" element={<Error />} />  */}
+
     </Routes>
   )
 }

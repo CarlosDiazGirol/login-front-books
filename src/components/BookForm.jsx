@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useRef, useState } from 'react'
 
 const initialValues = {
   title: '',
@@ -11,19 +11,30 @@ const initialValues = {
 
 function BookForm({ onSubmit, isLoadingSubmit }) {
   const [formData, setFormData] = useState(initialValues)
+  const [image, setImage] = useState(null)
+  const fileInputRef = useRef(null)
 
   const handleChange = (event) => {
     const { name, value } = event.target
     setFormData((current) => ({ ...current, [name]: value }))
   }
 
+  const handleImageChange = (event) => {
+    setImage(event.target.files[0] || null)
+  }
+
   const handleSubmit = async (event) => {
     event.preventDefault()
 
-    const didCreate = await onSubmit(formData)
+    const didCreate = await onSubmit({ ...formData, image })
 
     if (didCreate) {
       setFormData(initialValues)
+      setImage(null)
+
+      if (fileInputRef.current) {
+        fileInputRef.current.value = ''
+      }
     }
   }
 
@@ -60,6 +71,11 @@ function BookForm({ onSubmit, isLoadingSubmit }) {
         <div className="field-wide">
           <label htmlFor="year">Año</label>
           <input id="year" name="year" onChange={handleChange} type="number" value={formData.year} />
+        </div>
+
+        <div className="field-wide">
+          <label htmlFor="image">Imagen</label>
+          <input accept="image/*" id="image" name="image" onChange={handleImageChange} ref={fileInputRef} type="file" />
         </div>
 
         <div className="form-actions field-wide">

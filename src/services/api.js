@@ -21,7 +21,20 @@ export const getMe = () => request(() => api.get('/me'))
 export const logoutUser = () => request(() => api.post('/logout'))
 
 export const getBooks = () => request(() => api.get('/books'))
-export const createBook = (payload) => request(() => api.post('/books', payload))
+export const createBook = (payload) => {
+  // FormData crea un body tipo multipart/form-data para poder enviar los datos del libro y tambien el archivo de imagen en la misma peticion.
+  const formData = new FormData() 
+
+  // Recorre cada campo del payload y solo anade los que tienen valor.
+  Object.entries(payload).forEach(([key, value]) => {
+    if (value !== '' && value !== null && value !== undefined) {
+      formData.append(key, value)
+    }
+  })
+
+  return request(() => api.post('/books', formData))
+}
+
 export const deleteBook = (id) => request(() => api.delete(`/books/${id}`))
 
 //Payload se usa como nombre común de argumento para mandar datos

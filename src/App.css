@@ -187,6 +187,15 @@
   padding: 14px 16px;
 }
 
+.book-image {
+  display: block;
+  width: 100%;
+  max-height: 220px;
+  object-fit: cover;
+  border-radius: 10px;
+  margin-bottom: 12px;
+}
+
 .book-item-head {
   display: flex;
   align-items: flex-start;
@@ -219,6 +228,8 @@
   margin: 3px 0;
   color: var(--muted);
 }
+
+
 
 @media (max-width: 860px) {
   .books-grid {

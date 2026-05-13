@@ -15,6 +15,8 @@ function BookList({ books, isDeletingId, isLoading, onDelete }) {
         <div className="book-list">
           {books.map((book) => (
             <article className="book-item" key={book.id}>
+              {book.imageUrl ? <img alt={book.title} className="book-image" src={book.imageUrl} /> : null}
+
               <div className="book-item-head">
                 <h3>{book.title}</h3>
                 <button
@@ -23,7 +25,7 @@ function BookList({ books, isDeletingId, isLoading, onDelete }) {
                   onClick={() => onDelete(book.id)}
                   type="button"
                 >
-                  Eliminar
+                  X
                 </button>
               </div>
               <p>Autor: {book.author || 'Desconocido'}</p>
