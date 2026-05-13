@@ -24,21 +24,25 @@ function BookForm({ onSubmit, isLoadingSubmit }) {
     setImage(event.target.files[0] || null)
   }
 
+  // Se activa cuando el archivo entra en la zona de drop.
   const handleDragEnter = (event) => {
     event.preventDefault()
     setIsDragging(true)
   }
 
+  // Se activa mientras el archivo se mueve por encima de la zona.
   const handleDragOver = (event) => {
     event.preventDefault()
     setIsDragging(true)
   }
 
+  // Se activa cuando el archivo sale de la zona de drop.
   const handleDragLeave = (event) => {
     event.preventDefault()
     setIsDragging(false)
   }
 
+  // Se activa cuando se suelta el archivo y lo guarda en el estado.
   const handleDrop = (event) => {
     event.preventDefault()
     setIsDragging(false)
