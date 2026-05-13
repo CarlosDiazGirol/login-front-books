@@ -12,6 +12,7 @@ const initialValues = {
 function BookForm({ onSubmit, isLoadingSubmit }) {
   const [formData, setFormData] = useState(initialValues)
   const [image, setImage] = useState(null)
+  const [isDragging, setIsDragging] = useState(false)
   const fileInputRef = useRef(null)
 
   const handleChange = (event) => {
@@ -21,6 +22,39 @@ function BookForm({ onSubmit, isLoadingSubmit }) {
 
   const handleImageChange = (event) => {
     setImage(event.target.files[0] || null)
+  }
+
+  const handleDragEnter = (event) => {
+    event.preventDefault()
+    setIsDragging(true)
+  }
+
+  const handleDragOver = (event) => {
+    event.preventDefault()
+    setIsDragging(true)
+  }
+
+  const handleDragLeave = (event) => {
+    event.preventDefault()
+    setIsDragging(false)
+  }
+
+  const handleDrop = (event) => {
+    event.preventDefault()
+    setIsDragging(false)
+
+    const file = event.dataTransfer.files[0]
+
+    if (!file) {
+      return
+    }
+
+    setImage(file)
+
+    if (fileInputRef.current) {
+      const files = event.dataTransfer.files
+      fileInputRef.current.files = files
+    }
   }
 
   const handleSubmit = async (event) => {
@@ -75,7 +109,19 @@ function BookForm({ onSubmit, isLoadingSubmit }) {
 
         <div className="field-wide">
           <label htmlFor="image">Imagen</label>
-          <input accept="image/*" id="image" name="image" onChange={handleImageChange} ref={fileInputRef} type="file" />
+          <label
+            className={`upload-dropzone${isDragging ? ' is-dragging' : ''}`}
+            htmlFor="image"
+            onDragEnter={handleDragEnter}
+            onDragLeave={handleDragLeave}
+            onDragOver={handleDragOver}
+            onDrop={handleDrop}
+          >
+            <span className="upload-dropzone-title">Arrastra una imagen aqui</span>
+            <span className="upload-dropzone-text">o pulsa para abrir tu ordenador</span>
+            {image ? <span className="upload-dropzone-file">Imagen seleccionada: {image.name}</span> : null}
+          </label>
+          <input accept="image/*" className="upload-input" id="image" name="image" onChange={handleImageChange} ref={fileInputRef} type="file" />
         </div>
 
         <div className="form-actions field-wide">
